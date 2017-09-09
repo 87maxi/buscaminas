@@ -10,6 +10,7 @@ cors = CORS(app, resources={r"/*": {"origins": "*"}})
 @app.route("/panel")
 def panel():
     panel = []
+    #ToDo parameters 
     mine_limit=9
     panel_n = 10
 

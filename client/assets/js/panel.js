@@ -3,7 +3,6 @@
 * Todo  Loader init endpoints 
 */
 
-
 $.getJSON("http://localhost:5000/panel",  function( data  ){  
   draft_panel(data);
   user_events(data);
