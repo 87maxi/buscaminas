@@ -1,11 +1,10 @@
-#buscaminas test
+buscaminas test
 
-
-
-####load api
+load api
 
 pip install -r requirements.txt
 
 cd api/
+
 FLASK_APP=buscaminas.py flask run
 	
