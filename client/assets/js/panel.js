@@ -1,13 +1,15 @@
 
 /*
-* Todo  Loader init endpoints 
+* Todo Obj  Loader init endpoints 
 */
 
-$.getJSON("http://localhost:5000/panel",  function( data  ){  
-  draft_panel(data);
-  user_events(data);
-}).done(
-  function(s){  
+$.getJSON("http://localhost:5000/panel").done(function(data){
+    draft_panel(data);
+    user_events(data);
+       
+    //timer
+    start=new Date();
+    setInterval(draft_timer,1000);
     console.log('success')
 })
 
@@ -40,19 +42,7 @@ function draft_panel (panel){
 }
 
 function draft_timer(){
-  time = timer()
-  console.log(time)
-  $("#timer").html(time)
-}
-
-var init = 0;
-
-function start_timer() {
-         if (init==0) { 
-            start=new Date()            
-            elcrono=setInterval(draft_timer,1000);
-            init=1
-    }
+  $("#timer").html(timer())
 }
 
 
@@ -64,21 +54,25 @@ function user_events(panel){
   $(".cell").click(function(){  
       panel.forEach(
            function(e){
-            if (e.idx == this.dataset.idx ){
+            if(e.idx == this.dataset.idx ){
                alert (e.mine)
             } 
       }, this)
   })
 }
 
+
+/*
+*Todo obj Utils
+*/
    
 function timer() { 
-         timer=new Date(); 
-         cro=timer-start; 
+         time=new Date(); 
+         cro=time-start; 
          cr=new Date(); 
          cr.setTime(cro); 
          sg=cr.getSeconds(); 
          mn=cr.getMinutes(); 
-        return mn+" : "+sg 
+        return mn+" : "+sg; 
 }
 
