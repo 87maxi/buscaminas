@@ -13,7 +13,7 @@ $.getJSON("http://localhost:5000/panel",  function( data  ){
 
 
 /*
-*ToDO Obj to draft 
+*ToDO Obj draft 
 */
 
 function draft_panel (panel){  
@@ -39,10 +39,25 @@ function draft_panel (panel){
     })
 }
 
+function draft_timer(){
+  time = timer()
+  console.log(time)
+  $("#timer").html(time)
+}
+
+var init = 0;
+
+function start_timer() {
+         if (init==0) { 
+            start=new Date()            
+            elcrono=setInterval(draft_timer,1000);
+            init=1
+    }
+}
 
 
 /**
-ToDo Obj user events
+ToDo Obj events
 */
 
 function user_events(panel){
@@ -55,3 +70,15 @@ function user_events(panel){
       }, this)
   })
 }
+
+   
+function timer() { 
+         timer=new Date(); 
+         cro=timer-start; 
+         cr=new Date(); 
+         cr.setTime(cro); 
+         sg=cr.getSeconds(); 
+         mn=cr.getMinutes(); 
+        return mn+" : "+sg 
+}
+
