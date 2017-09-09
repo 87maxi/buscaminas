@@ -1,13 +1,23 @@
 
-$.getJSON("http://localhost:5000/panel",  function( data  ){ draf_panel(data)   }).done(
+/*
+* Todo  Loader init endpoints 
+*/
+
+
+$.getJSON("http://localhost:5000/panel",  function( data  ){  
+  draft_panel(data);
+  user_events(data);
+}).done(
   function(s){  
     console.log('success')
 })
 
 
+/*
+*ToDO Obj to draft 
+*/
 
-
-function draf_panel (panel ){  
+function draft_panel (panel){  
     /*
     * render rows
     */
@@ -20,7 +30,6 @@ function draf_panel (panel ){
       }
     })
 
-
     /*
     * render cols
     */
@@ -29,20 +38,21 @@ function draf_panel (panel ){
         mine = e.mine ? "b" : "n"  
       $("#row_"+e.y).append('<td  class="cell col_'+e.x+'" data-idx="'+e.idx+'" >'+mine+'</td>')
     })
-    
-    console.log(panel)
 }
 
+
+
 /**
-user events
+ToDo Obj user events
 */
 
-$(".cell").click(function(){  
-    panel.forEach(
-         function(e){
-          if (e.idx == this.dataset.idx ){
-            alert(e.mine)
-          } 
-    }, this)
-})
-
+function user_events(panel){
+  $(".cell").click(function(){  
+      panel.forEach(
+           function(e){
+            if (e.idx == this.dataset.idx ){
+               alert (e.mine)
+            } 
+      }, this)
+  })
+}
