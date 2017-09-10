@@ -55,12 +55,23 @@ function user_events(panel){
       panel.forEach(
            function(e){
             if(e.idx == this.dataset.idx ){
-               alert (e.mine)
+              action = e.mine ? "game_over()" : "cell_discover()"
+              alert(action)
             } 
       }, this)
   })
 }
 
+
+/*
+function game_over(){} *5
+
+function cell_discover(){} *3
+
+function set_flg(){} *4
+
+function set_ask(){} *4
+*/
 
 /*
 *Todo obj Utils

@@ -10,14 +10,15 @@ cors = CORS(app, resources={r"/*": {"origins": "*"}})
 @app.route("/panel")
 def panel():
     panel = []
-    #ToDo parameters 
+    #ToDo POST parameters *7
     mine_limit=9
-    panel_n = 10
+    panel_y = 10
+    panel_x = 10
 
     idx=0
-    for y in range(panel_n):
+    for y in range(panel_y):
         y += 1
-        for x in range(panel_n):
+        for x in range(panel_x):
             x +=1
             mine = False
             if len([p["mine"] for p in panel if p['mine'] == True]) < mine_limit:
