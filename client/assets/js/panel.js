@@ -67,12 +67,12 @@ function user_events(panel){
 */
    
 function timer() { 
-         time=new Date(); 
-         cro=time-start; 
-         cr=new Date(); 
+         var time=new Date(); 
+         var cro=time-start; 
+         var cr=new Date(); 
          cr.setTime(cro); 
-         sg=cr.getSeconds(); 
-         mn=cr.getMinutes(); 
+         var sg=cr.getSeconds(); 
+         var mn=cr.getMinutes(); 
         return mn+" : "+sg; 
 }
 
