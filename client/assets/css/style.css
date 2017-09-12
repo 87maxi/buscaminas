@@ -1,8 +1,20 @@
 /*todo*/
 
+
+table{
+	background-color: grey;
+}
+
+
+.covered {
+  visibility: hidden;	
+}
+
+
+
+
 /*
-.cell covered{}
-.cell discovered{}
+
 .cell flag{}
 .cell ask{}
 */ 
