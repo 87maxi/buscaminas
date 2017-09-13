@@ -4,12 +4,14 @@
 *ToDO Obj draft 
 */
 
-function draft_panel (panel){  
+var Draft = {}
+ 
+Draft.panel = function (){  
     /*
     * render rows
     */
     idx_list = []
-    panel.forEach(
+    Utils.panel.forEach(
       function(e){
         if (idx_list.indexOf(e.y) === -1){
           idx_list.push(e.y)
@@ -20,14 +22,15 @@ function draft_panel (panel){
     /*
     * render cols
     */
-    panel.forEach(
+    Utils.panel.forEach(
       function(e){
-        mine = e.mine ? "b" : "n"  
+        mine = e.mine ? "x" : "o"  
       $("#row_"+e.y).append('<td  class="cell covered col_'+e.x+'" data-idx="'+e.idx+'" >'+mine+'</td>')
     })
 }
 
-function draft_timer(){
+
+Draft.timer = function(){
   $("#timer").html(Utils.timer())
 }
 
@@ -41,18 +44,12 @@ var EventUser = {};
 EventUser.click_panel = function (panel){
 
 					$(".cell").click(function(){  
-								Utils.panel.forEach(
-									 function(e){
+								Utils.panel.forEach( function(e){
+									
 										if(e.idx == this.dataset.idx ){
-
-											//if (e.mine){
-														Utils.filter_cell(e, Utils.discover_cell)
-										 //}
-
-							//action = e.mine ? "game_over()" : cell_discover(panel,  e )
-							} 
-				}, this)
-
+											e.mine ? Utils.game_over() : Utils.filter_cell(e, Utils.discover_cell)
+										} 
+									}, this)
 		})
 }
 
@@ -105,7 +102,20 @@ Utils.discover_cell = function(e){
 		e.forEach(function(obj){
 			elem = document.querySelector("[data-idx~='"+obj.idx+"']")	
 			elem.classList.remove("covered")
+			//game_over 
+			if (obj.mine){
+				Utils.game_over();
+			}
 	})
+}
+
+
+Utils.game_over = function(){
+	  $("#timer").html("GAME OVER")
+		elem = document.querySelectorAll(".cell");
+		elem.forEach(function(x){
+						x.classList.remove("covered")
+				})
 }
 
 
@@ -118,13 +128,13 @@ Utils.discover_cell = function(e){
 $.getJSON("http://localhost:5000/panel").done(function(data){
     
 	  Utils.panel = data;
-		draft_panel(data);
-    //user_events(data);
+		Draft.panel()
+    
 	  EventUser.click_panel();
        
     //timer
     start=new Date();
-    setInterval(draft_timer,1000);
+    setInterval(Draft.timer,1000);
     console.log('success')
 })
 
